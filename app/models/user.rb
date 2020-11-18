@@ -7,4 +7,6 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname, :introduction, :birth_day
   end
+
+  has_one_attached :image
 end
