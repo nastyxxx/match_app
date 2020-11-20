@@ -1,6 +1,14 @@
 <div class="fixed-bg bg01">
   <br /><br /><br />
-  <h1 class="font-weight-bolder"><%= @room.name %></h1>
+
+  <div class="d-flex">
+    <div class="p-2 flex-grow-1">
+      <h1 class="font-weight-bolder"><%= @room.name %></h1>
+    </div>
+    <div class="p-2">
+      <h1 class='font-weight-bolder'><%= link_to 'Delete?', room_path(@room), method: :delete, class: "text-decoration-none text-dark" %></h1>
+    </div>
+  </div>
 
   <div class="line-bc">
     <% @messages.each do |message| %>
@@ -10,7 +18,7 @@
             <%= message.user.nickname %>
           </div>
           <div class="faceicon">
-            <%= image_tag message.user.image, class: "rounded-circle", alt: "Circle image" if message.image.attached? %><br />
+            <%= image_tag message.user.image, class: "rounded", alt: "Image" if message.image.attached? %><br />
           </div>
           <div class="chatting">
             <div class="says">
@@ -26,14 +34,7 @@
             <%= message.content %>
           </p>
         </div>
-        <%= image_tag message.image, class: "rounded-circle", alt: "Circle image" if message.image.attached? %>
-        <%
-=begin%>
- <div>
-          <%= l message.created_at %>
-        </div> 
-<%
-=end%>
+        <%= image_tag message.image, class: "rounded", alt: "Image" if message.image.attached? %>
       <% end %>
     <% end %>
 

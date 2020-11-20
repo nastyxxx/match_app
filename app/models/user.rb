@@ -8,8 +8,8 @@ class User < ApplicationRecord
     validates :nickname, :introduction, :birth_day
   end
 
-  has_one_attached :image
-  has_many :room_users
-  has_many :rooms, through: :room_users
+  has_one_attached :image, dependent: :destroy
+  has_many :room_users, dependent: :destroy
+  has_many :rooms, through: :room_users, dependent: :destroy
   has_many :messages, dependent: :destroy
 end
