@@ -1,0 +1,35 @@
+<%= form_with model: current_user, local: true do |f|%>
+
+  <br /><br /><br />
+
+  <h1 class="font-weight-bolder">Edit Account</h1>
+
+  <div class=>
+    <div class=>
+      <%= f.label :image %>
+    </div>
+    <div class=>
+      <%= f.file_field :image %>
+    </div>
+  </div>
+  <div class=>
+    <div class=>
+      <%= f.label :nickname%>
+    </div>
+    <div class=>
+      <%= f.text_field :nickname, autofocus: true%>
+    </div>
+  </div>
+  <div class=>
+    <div class=>
+      <%= f.label :email%>
+    </div>
+    <div class=>
+      <%= f.email_field :email%>
+    </div>
+  </div>
+  <div class=>
+    <%= f.submit "Update", class: 'btn btn-primary mt-1'%>
+  </div>
+  
+<% end %>
