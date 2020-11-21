@@ -20,18 +20,22 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <%if @sns_id.present? %>
+    <%= hidden_field_tag :sns_auth, true %>
+  <% else %>
+    <div class="field">
+      <%= f.label :password %><br />
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :introdution %><br />
@@ -57,7 +61,8 @@
   </div>
 <% end %>
 
-<%= link_to 'Sign in by Facebook', user_facebook_omniauth_authorize_path, method: :post%>
-<%= link_to 'Sign in by Google', user_google_oauth2_omniauth_authorize_path, method: :post%>
-
+<%= link_to 'Sign up by Facebook', user_facebook_omniauth_authorize_path, method: :post%><br />
+<%= link_to 'Sign up by Google', user_google_oauth2_omniauth_authorize_path, method: :post%><br />
 <%= render "devise/shared/links" %>
+
+<br /><br />
