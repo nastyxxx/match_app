@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.order("created_at DESC")
+    @rooms = current_user.rooms.order(created_at: :desc)
   end
   
   def new
@@ -20,6 +20,10 @@ class RoomsController < ApplicationController
     room = Room.find(params[:id])
     room.destroy
     redirect_to root_path
+  end
+
+  def search
+    @rooms = SearchRoomsService.search(params[:keyword]).order(created_at: :desc)
   end
 
   private

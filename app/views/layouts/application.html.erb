@@ -14,12 +14,6 @@
 
   <body class="bg-light">
 
-    <a id="skippy" class="sr-only sr-only-focusable" href="#content">
-      <div class="container">
-        <span class="skiplink-text">Skip to main content</span>
-      </div>
-    </a>
-
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
       <a class="navbar-brand mr-auto mr-lg-0" href="/">Match App</a>
       <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
@@ -48,10 +42,12 @@
         <% end %>
         </ul>
         
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <% if user_signed_in? %>
+          <%= form_with model: @room, url: search_rooms_path, method: :get, class: "form-inline my-2 my-lg-0", local: true do |f| %>
+            <%= f.search_field :keyword, class: "form-control mr-sm-2", placeholder: "Search" %>
+            <%= f.submit 'Search', class: "btn btn-outline-success my-2 my-sm-0" %>
+          <% end %>
+        <% end %>
       </div>
     </nav>
 
