@@ -18,23 +18,26 @@
             <%= message.user.nickname %>
           </div>
           <div class="faceicon">
-            <%= image_tag message.user.image, class: "rounded", alt: "Image" if message.image.attached? %><br />
+            <%= image_tag message.user.image, class: "rounded-circle", alt: "Image" if message.user.image.attached? %><br />
           </div>
-          <div class="chatting">
-            <div class="says">
-              <p>
-                <%= message.content %>
-              </p>
+          <% unless message.content.blank? %>
+            <div class="chatting">
+              <div class="says">
+                  <p><%= message.content %></p>
+              </div>
             </div>
+          <% end %>
+          <div class="d-flex ml-5">
+              <%= image_tag message.image, class: "rounded-xs mt-1", alt: "Image" if message.image.attached? %>
           </div>
         </div>
         <% else %>
         <div class="mycomment">
-          <p>
-            <%= message.content %>
-          </p>
+          <% unless message.content.blank? %>
+            <p><%= message.content %></p>
+          <% end %>
         </div>
-        <%= image_tag message.image, class: "rounded", alt: "Image" if message.image.attached? %>
+          <%= image_tag message.image, class: "rounded-xs mt-2", alt: "Image" if message.image.attached? %>
       <% end %>
     <% end %>
 

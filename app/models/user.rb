@@ -5,7 +5,7 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable
 
   with_options presence: true do
-    validates :nickname, :introduction, :birth_day
+    validates :nickname, :introduction, :birth_day, :image
   end
 
   has_one_attached :image, dependent: :destroy

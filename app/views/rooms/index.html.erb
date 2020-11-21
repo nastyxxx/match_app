@@ -4,9 +4,8 @@
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <h6 class="border-bottom border-gray pb-2 mb-0">Recent Chats</h6>
-      <% current_user.rooms.each do |room|%>
+      <% current_user.rooms.order(created_at: :desc).each do |room|%>
       <div class="media text-muted pt-3">
-        <%#= image_tag current_user.image, alt: "" class: "mr-2 rounded"%>
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
           <strong class="d-block text-gray-dark">
             <%= link_to room.name, room_messages_path(room) %>
