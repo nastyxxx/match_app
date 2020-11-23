@@ -1,6 +1,4 @@
 <div class="fixed-bg bg01">
-  <br /><br /><br />
-
   <div class="d-flex">
     <div class="p-2 flex-grow-1">
       <h1 class="font-weight-bolder"><%= @room.name %></h1>
@@ -40,19 +38,17 @@
           <%= image_tag message.image, class: "rounded-xs mt-2", alt: "Image" if message.image.attached? %>
       <% end %>
     <% end %>
-
   </div>
-  <br /><br/><br /><br/>
+
+  <br /><br/>
 
   <div class="fixed-bottom">
     <div class='container'>
       <%= form_with model: [@room, @message], local: true do |f| %>
         <div class='input-group'>
           <%= f.text_field :content, class: 'form-control', placeholder: 'type a message' %>
-
-          <label class="input-group-text" for="customFile">picture</label>
+          <%= f.label 'picture', class: "input-group-text", for: "customFile" %>
           <%= f.file_field :image, class: "d-none", id: "customFile" %>
-
           <div class="input-group-append">
             <%= f.submit 'Send', class: "btn btn-sm btn-primary" %>
           </div>
@@ -60,5 +56,4 @@
       <% end %>
     </div>
   </div>
-
 </div>
