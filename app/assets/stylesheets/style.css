@@ -95,3 +95,8 @@
   -webkit-transform: rotate(-35deg);
   transform: rotate(-35deg);
 }
+
+#map {
+  height: 400px;
+  width: 400px;
+}

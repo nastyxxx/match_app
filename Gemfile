@@ -62,8 +62,6 @@ gem 'pry-rails'
 gem 'active_hash'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
-gem 'bootstrap', '~> 5.0.0.alpha3'
-gem 'jquery-rails'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
