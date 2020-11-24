@@ -5,8 +5,11 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable,
           :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   with_options presence: true do
-    validates :nickname, :introduction, :birth_day, :image
+    validates :nickname, :introduction, :birth_day, :image, :address
   end
 
   has_one_attached :image, dependent: :destroy
