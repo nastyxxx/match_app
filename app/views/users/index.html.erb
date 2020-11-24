@@ -1,0 +1,14 @@
+<br />
+
+<h1 class="font-weight-bolder">All Users</h1>
+
+<div class="row">
+  <% @users.each do |user| %>
+  <div class="col-sm-4 col-lg-4 text-center">
+    <%= image_tag user.image, class: "rounded-circle",  width: "140", height: "140" %>
+    <h2><%= user.nickname %></h2>
+    <p><%= user.introduction %></p>
+    <p><a class="btn btn-secondary" href="#" role="button">More</a></p>
+  </div><!-- /.col-lg-4 -->
+  <% end %>
+</div><!-- /.row -->

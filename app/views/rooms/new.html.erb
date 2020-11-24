@@ -4,33 +4,40 @@
 
   <h1 class="font-weight-bolder">New Chat</h1>
 
-  <div class=>
-    <div>
-      <label for="inputChatname">Chat Name</label>
-    </div>
-    <div>
-      <%= f.text_field :name, placeholder: 'Chat Name', id: "inputChatname"%>
-    </div>
+  <label for="inputChatname">Chat Name</label>
+  <div class="form-inline">
+    <%= f.text_field :name, placeholder: 'Chat Name', class: "form-control", id: "inputChatname"%>
   </div>
+  <label for="inputchatMember">Chat Member</label>
 
-  <div class=>
-    <div>
-      <label for="inputchatMember">Chat Member</label>
+  <%
+=begin%>
+  <div class='d-flex flex-equal w-100' name="room[user_ids][]">
+    <div class="col-md-4">
+      <% User.where.not(id: current_user.id).each do |user| %>
+        <div class="card mb-4 shadow-sm">
+          <%= image_tag user.image, class: "card-img-top", alt: "No Image [100%x225]", style: "height: 225px; width: 100%; display: block;" %>
+          <div class="card-body">
+            <option value=<%= user.id %>><%= user.nickname %></option>
+            <p class="card-text"><%= user.introduction%></p>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div>
-      <select name="room[user_ids][]" id="inputchatMember">
-        <option value="" class=>Choose Chat Member</option>
-        <% User.where.not(id: current_user.id).each do |user| %>
-          <option value=<%= user.id %>><%= user.nickname %></option>
-        <% end %>
-      </select>
-      <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
-    </div>
-  </div>
+    <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+  </div> 
+<%
+=end%>
 
-  <div class="checkbox mb-3">
-  </div>
-
-  <button class="btn btn-primary" type="submit">Create</button>
+  <div>
+    <select name="room[user_ids][]">
+      <option>Choose Chat Member</option>
+      <% User.where.not(id: current_user.id).each do |user| %>
+        <option value=<%= user.id %>><%= user.nickname %></option>
+      <% end %>
+    </select>
+    <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+  </div> 
+  <%= f.submit "Create", class: "btn btn-primary mt-2"%>
 
 <% end %>

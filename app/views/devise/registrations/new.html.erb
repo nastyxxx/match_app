@@ -10,43 +10,42 @@
     <%= f.file_field :image %>
   </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+  <%= f.label :nickname %><br />
+  <div class="form-inline">
+    <%= f.text_field :nickname, autofocus: true, class: 'form-control',  autocomplete: "nickname" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= f.label :email %><br />
+  <div class="form-inline">
+    <%= f.email_field :email, autofocus: true, class: 'form-control',  autocomplete: "email" %>
   </div>
 
   <%if @sns_id.present? %>
     <%= hidden_field_tag :sns_auth, true %>
   <% else %>
-    <div class="field">
-      <%= f.label :password %><br />
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :password %><br />
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <div class="form-inline">
+      <%= f.password_field :password, class: 'form-control', autocomplete: "new-password" %>
     </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation %><br />
+    <div class="form-inline">
+      <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password" %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :introdution %><br />
-    <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction" %>
+  <%= f.label :introdution %>
+  <div class="form-inline">
+    <%= f.text_area :introduction, autofocus: true, class: 'form-control', autocomplete: "introduction" %>
   </div>
 
-  <div class='field'>
+  <div class=''>
     <%= raw sprintf(
       f.date_select(
         :birth_day,
-        class:'select-birth',
+        class:"custom-select d-block",
         id:"birth-date",
         use_month_numbers: true,
         prompt:'--',
@@ -56,15 +55,13 @@
         "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
   </div>
 
-  <div class="field">
     <%= f.label :location %>
-    <div class="form-inline my-2 my-lg-0">
+    <div class="form-inline">
       <%= f.text_field :address, id: 'address', class: 'form-control' %>
       <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary'>
     </div>
     <div id="display"><br /></div>
     <div id='map'></div>
-  </div>
 
   <div class="actions">
     <%= f.submit "Sign up", class: 'btn btn-primary'%>
@@ -74,5 +71,43 @@
 <%= link_to 'Sign up with Facebook', user_facebook_omniauth_authorize_path, method: :post%><br />
 <%= link_to 'Sign up with Google', user_google_oauth2_omniauth_authorize_path, method: :post%><br />
 <%= render "devise/shared/links" %>
+<script>
+  let map
+  let geocoder
+  const display = document.getElementById('display')
+
+  // 入力前の地図
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 35.6585805, lng:139.7454329},
+      zoom: 12,
+    });
+
+    marker = new google.maps.Marker({
+      position:  {lat: 35.6585805, lng:139.7454329},
+      map: map
+    });
+  }
+
+  // 入力後の地図
+  function codeAddress(){
+    let inputAddress = document.getElementById('address').value;
+
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+        display.textContent = "Result：" + results[ 0 ].geometry.location
+      } else {
+        alert('No Result：' + status);
+      }
+    });   
+  }
+</script>
 
 <br />

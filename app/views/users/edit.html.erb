@@ -6,8 +6,8 @@
   <%= image_tag current_user.image %>
   <div>
     <%= f.label :image %>
-    <div class=>
-      <%= f.file_field :image %>
+    <div>
+      <%= f.file_field :image, class: "form-control-file" %>
     </div>
   </div>
   <%= f.label :nickname%>
@@ -27,3 +27,42 @@
   <div id='map'></div>
   <%= f.submit "Update", class: 'btn btn-primary mt-1'%>
 <% end %>
+
+<script>
+  let map
+  let geocoder
+  const display = document.getElementById('display')
+
+  // 入力前の地図
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: <%= current_user.latitude %>, lng:<%= current_user.longitude%>},
+      zoom: 12,
+    });
+
+    marker = new google.maps.Marker({
+      position:  {lat: <%= current_user.latitude %>, lng:<%= current_user.longitude%>},
+      map: map
+    });
+  }
+
+  // 入力後の地図
+  function codeAddress(){
+    let inputAddress = document.getElementById('address').value;
+
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+        display.textContent = "Result：" + results[ 0 ].geometry.location
+      } else {
+        alert('No Result：' + status);
+      }
+    });   
+  }
+</script>
