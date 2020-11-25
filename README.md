@@ -1,24 +1,66 @@
-# README
+# database
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column       | Type   | Options     |
+| ------------ | ------ | ----------- |
+| nickname     | string | null: false |
+| email        | string | null: false |
+| password     | string | null: false |
+| introduction | text   | null: false |
+| birth_day    | date   | null: false |
+| address      | string | null: false |
+| latitude     | float  |             |
+| longitude    | float  |             |
 
-* Ruby version
+### Association
 
-* System dependencies
+ - has_many :room_users, dependent: :destroy
+ - has_many :rooms, through: room_users
+ - has_many :messages, dependent: :destroy
+ - has_one_attached :image
+ - has_many :sns_credential, dependent: :destroy
 
-* Configuration
+ ## sns_credentials table
 
-* Database creation
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| provider | string     | null: false                    |
+| uid      | string     | null: false                    |
+| user     | references | null: false, foreign_key: true |
 
-* Database initialization
+ - belongs_to :user, optional: true
 
-* How to run the test suite
+## rooms table
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column   | Type     | Options       |
+| -------- | -------- | ------------- |
+| name     | string   | null: false   |
 
-* Deployment instructions
+### Association
 
-* ...
+ - has_many :room_users
+ - has_many :users, through: room_users
+ - has_many :messages, dependent: :destroy
+
+## room_users table
+
+| Column   | Type      | Options                        |
+| -------- | ----------| ------------------------------ |
+| user     | reference | null: false, foreign_key: true |
+| room     | reference | null: false, foreign_key: true |
+
+ - belongs_to :room, optional: true
+ - belongs_to :user, optional: true
+
+## messages table
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| content | string     | null: false                    |
+| user    | references | null: false, foreign_key: true |
+| room    | references | null: false, foreign_key: true |
+
+ - belongs_to :room
+ - belongs_to :user
+ - has_one_attached :image
