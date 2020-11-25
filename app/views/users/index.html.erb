@@ -7,8 +7,10 @@
   <div class="col-sm-4 col-lg-4 text-center">
     <%= image_tag user.image, class: "rounded-circle",  width: "140", height: "140" %>
     <h2><%= user.nickname %></h2>
-    <p><%= user.introduction %></p>
-    <p><a class="btn btn-secondary" href="#" role="button">More</a></p>
+    <div class="d-block text-truncate">
+      <%= user.introduction %>
+    </div>
+    <p><%= link_to "More", user_path(user), class: "btn btn-secondary"%></p>
   </div><!-- /.col-lg-4 -->
   <% end %>
 </div><!-- /.row -->
