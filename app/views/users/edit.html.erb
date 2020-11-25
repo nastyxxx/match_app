@@ -2,30 +2,30 @@
 
   <br />
 
-  <h1 class="font-weight-bolder">Edit Account</h1>
+  <h1 class="font-weight-bolder font-italic">Edit Account</h1>
   <%= image_tag current_user.image %>
-  <div>
-    <%= f.label :image %>
+  <div class="custam-form">
+    <%= f.label :image, class: 'font-italic'%>
     <div>
       <%= f.file_field :image, class: "form-control-file" %>
     </div>
   </div>
-  <%= f.label :nickname%>
+  <%= f.label :nickname, class: 'font-italic'%>
   <div class="form-inline">
     <%= f.text_field :nickname, autofocus: true, class: 'form-control'%>
   </div>
-  <%= f.label :email%>
+  <%= f.label :email, class: 'font-italic'%>
   <div class="form-inline">
     <%= f.email_field :email, class: 'form-control' %>
   </div>
-  <%= f.label :location %>
+  <%= f.label :location, class: 'font-italic' %>
   <div class="form-inline">
     <%= f.text_field :address, id: 'address', class: 'form-control' %>
     <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary'>
   </div>
   <div id="display"></div>
   <div id='map'></div>
-  <%= f.submit "Update", class: 'btn btn-primary mt-1'%>
+  <%= f.submit "Update", class: 'btn btn-secondary mt-1'%>
 <% end %>
 
 <script>

@@ -2,15 +2,15 @@
   
   <br />
 
-  <h1 class="font-weight-bolder">New Chat</h1>
+  <h1 class="font-weight-bolder font-italic">New Chat</h1>
 
-  <label for="inputChatname">Chat Name</label>
+  <label class="font-italic" for="inputChatname">Chat Name</label>
   <div class="form-inline">
-    <%= f.text_field :name, placeholder: 'Chat Name', class: "form-control", id: "inputChatname"%>
+    <%= f.text_field :name, placeholder: 'Chat Name', class: "form-control font-italic", id: "inputChatname"%>
   </div>
-  <label for="inputchatMember">Chat Member</label>
+  <label class="font-italic" for="inputchatMember">Chat Member</label>
   <div class="form-inline">
-    <select name="room[user_ids][]" class="custom-select">
+    <select name="room[user_ids][]" class="custom-select font-italic">
       <option>Choose Member</option>
       <% User.where.not(id: current_user.id).each do |user| %>
         <option value=<%= user.id %>><%= user.nickname %></option>
@@ -18,5 +18,5 @@
     </select>
     <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
   </div>
-  <%= f.submit "Create", class: "btn btn-primary mt-2"%>
+  <%= f.submit "Create", class: "btn btn-secondary mt-2"%>
 <% end %>
