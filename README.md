@@ -29,6 +29,8 @@
 | uid      | string     | null: false                    |
 | user     | references | null: false, foreign_key: true |
 
+### Association
+
  - belongs_to :user, optional: true
 
 ## rooms table
@@ -50,6 +52,8 @@
 | user     | reference | null: false, foreign_key: true |
 | room     | reference | null: false, foreign_key: true |
 
+### Association
+
  - belongs_to :room, optional: true
  - belongs_to :user, optional: true
 
@@ -60,6 +64,8 @@
 | content | string     | null: false                    |
 | user    | references | null: false, foreign_key: true |
 | room    | references | null: false, foreign_key: true |
+
+### Association
 
  - belongs_to :room
  - belongs_to :user
