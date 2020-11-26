@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   def index
     @rooms = current_user.rooms.order(created_at: :desc)
   end
-  
+
   def new
     @room = Room.new
   end
@@ -27,6 +27,7 @@ class RoomsController < ApplicationController
   end
 
   private
+
   def room_params
     params.require(:room).permit(:name, user_ids: [])
   end

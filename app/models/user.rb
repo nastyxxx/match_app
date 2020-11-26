@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable,
-          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
+          :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
@@ -22,7 +22,7 @@ class User < ApplicationRecord
     sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create
     user = User.where(email: auth.info.email).first_or_initialize(
       nickname: auth.info.name,
-      email:    auth.info.email
+      email: auth.info.email
     )
     if user.persisted?
       sns.user = user

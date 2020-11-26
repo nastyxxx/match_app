@@ -3,8 +3,7 @@ class UsersController < ApplicationController
     @users = User.where.not(id: current_user.id)
   end
 
-  def edit
-  end
+  def edit; end
 
   def show
     @user = User.find(params[:id])
@@ -24,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:image, :nickname, :email, :address)
   end
