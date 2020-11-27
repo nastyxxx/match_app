@@ -13,7 +13,7 @@
       <% if current_user.id != message.user_id %>
         <div class="balloon6">
           <div class="opponent_name">
-            <%= message.user.nickname %>
+            <%= link_to message.user.nickname, user_path(message.user), class: 'text-reset' %>
           </div>
           <div class="faceicon">
             <%= image_tag message.user.image, class: "rounded-circle", alt: "Image" if message.user.image.attached? %><br />
