@@ -1,21 +1,21 @@
 <br />
 
-<h1 class="font-weight-bolder">Sign up</h1>
+<h1 class="font-weight-bolder font-italic">Sign up</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="custom-form">
-    <%= f.label :image %><br />
+    <%= f.label :image, class: 'font-italic' %><br />
     <%= f.file_field :image %>
   </div>
 
-  <%= f.label :nickname %><br />
+  <%= f.label :nickname, class: 'font-italic' %><br />
   <div class="form-inline">
     <%= f.text_field :nickname, autofocus: true, class: 'form-control',  autocomplete: "nickname" %>
   </div>
 
-  <%= f.label :email %><br />
+  <%= f.label :email, class: 'font-italic' %><br />
   <div class="form-inline">
     <%= f.email_field :email, autofocus: true, class: 'form-control',  autocomplete: "email" %>
   </div>
@@ -23,25 +23,26 @@
   <%if @sns_id.present? %>
     <%= hidden_field_tag :sns_auth, true %>
   <% else %>
-    <%= f.label :password %><br />
+    <%= f.label :password, class: 'font-italic' %><br />
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <div class="form-inline">
       <%= f.password_field :password, class: 'form-control', autocomplete: "new-password" %>
     </div>
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, class: 'font-italic' %><br />
     <div class="form-inline">
       <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password" %>
     </div>
   <% end %>
 
-  <%= f.label :introdution %>
+  <%= f.label :introdution, class: 'font-italic' %>
   <div class="form-inline">
     <%= f.text_area :introduction, autofocus: true, class: 'form-control', autocomplete: "introduction" %>
   </div>
 
-  <div class='mt-1'>
+  <%= f.label :birth_day, class: 'font-italic' %>
+  <div class='input-group'>
     <%= raw sprintf(
       f.date_select(
         :birth_day,
@@ -52,16 +53,16 @@
         start_year: 1930,
         end_year: (Time.now.year - 5),
         date_separator: '%s'),
-        "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+        " /Y ", " /M ") + " /D " %>
   </div>
   
-  <%= f.label :location %>
+  <%= f.label :location, class: 'font-italic mt-1' %>
   <div class="form-inline">
     <%= f.text_field :address, id: 'address', class: 'form-control' %>
     <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary'>
   </div>
   <div id="display"><br /></div>
-  <div id='map'></div>
+  <div id='map' class="rounded"></div>
   <%= f.submit "Sign up", class: 'btn btn-secondary mt-1'%>
 <% end %>
 

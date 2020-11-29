@@ -2,7 +2,7 @@
 
 <h1 class="font-weight-bolder font-italic"><%= @user.nickname%></h1>
 
-<%= image_tag @user.image %>
+<%= image_tag @user.image, class: "rounded-circle",  width: "200", height: "200"%>
 <h3 class="font-weight-bolder font-italic">
   Introduction...
 </h3>
@@ -20,7 +20,7 @@
   </h5>
 </div>
 <div id="display"></div>
-<div id='map'></div>
+<div id='map' class="rounded"></div>
 
 <script>
   let map

@@ -3,7 +3,7 @@
   <br />
 
   <h1 class="font-weight-bolder font-italic">Edit Account</h1>
-  <%= image_tag current_user.image %>
+  <%= image_tag current_user.image, class: "rounded-circle",  width: "200", height: "200"%>
   <div class="custam-form">
     <%= f.label :image, class: 'font-italic'%>
     <div>
@@ -24,7 +24,7 @@
     <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary'>
   </div>
   <div id="display" class="mt-1"></div>
-  <div id='map'></div>
+  <div id='map' class="rounded"></div>
   <%= f.submit "Update", class: 'btn btn-secondary mt-1'%>
 <% end %>
 <%= link_to  "Delete account?", user_path, method: :delete, class: 'btn btn-danger mt-1' %>

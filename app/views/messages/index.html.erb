@@ -1,10 +1,10 @@
 <div class="fixed-bg bg01">
   <div class="d-flex">
     <div class="p-2 flex-grow-1">
-      <h1 class="font-weight-bolder"><%= @room.name %></h1>
+      <h1 class="font-weight-bolder font-italic"><%= @room.name %></h1>
     </div>
     <div class="p-2">
-      <h1 class='font-weight-bolder'><%= link_to 'Delete?', room_path(@room), method: :delete, class: "text-decoration-none text-dark" %></h1>
+      <h1 class='font-weight-bolder font-italic'><%= link_to 'Delete?', room_path(@room), method: :delete, class: "text-decoration-none text-dark" %></h1>
     </div>
   </div>
 
@@ -21,12 +21,12 @@
           <% unless message.content.blank? %>
             <div class="chatting">
               <div class="says">
-                  <p><%= message.content %></p>
+                <p><%= message.content %></p>
               </div>
             </div>
           <% end %>
           <div class="d-flex ml-5">
-              <%= image_tag message.image, class: "rounded-xs mt-1", alt: "Image" if message.image.attached? %>
+            <%= image_tag message.image, class: "rounded mt-1", width: '150', height: '150', alt: "Image" if message.image.attached? %>
           </div>
         </div>
         <% else %>
@@ -35,7 +35,7 @@
             <p><%= message.content %></p>
           <% end %>
         </div>
-          <%= image_tag message.image, class: "rounded-xs mt-2", alt: "Image" if message.image.attached? %>
+          <%= image_tag message.image, class: "rounded- mt-1", width: '150', height: '150', alt: "Image" if message.image.attached? %>
       <% end %>
     <% end %>
   </div>
@@ -46,7 +46,7 @@
     <div class='container'>
       <%= form_with model: [@room, @message], local: true do |f| %>
         <div class='input-group'>
-          <%= f.text_field :content, class: 'form-control', placeholder: 'type a message' %>
+          <%= f.text_field :content, class: 'form-control font-italic', placeholder: 'type a message' %>
           <%= f.label 'picture', class: "input-group-text", for: "customFile" %>
           <%= f.file_field :image, class: "d-none", id: "customFile" %>
           <div class="input-group-append">
