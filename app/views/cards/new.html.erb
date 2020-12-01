@@ -1,0 +1,30 @@
+<%= form_with  url: cards_path, id: 'charge-form', class: 'card-form',local: true do |f| %>
+
+  <br>
+
+  <h1 class="font-weight-bolder font-italic">Card Registration</h1>
+  
+  <%= f.label :number, "Card number", class: 'font-italic' %>
+  <div class='form-inline'>
+    <%= f.text_field :number, class:"form-control font-italic", placeholder:"half-width number", maxlength:"16" %>
+  </div>
+  <div class='inline-block'>
+    <%= image_tag 'card-visa.gif', class: 'rounded', width: '40', height: '30'%>
+    <%= image_tag 'card-mastercard.gif', class: 'rounded', width: '40', height: '30'%>
+    <%= image_tag 'card-jcb.gif', class: 'rounded', width: '40', height: '30'%>
+    <%= image_tag 'card-amex.gif', class: 'rounded', width: '40', height: '30'%>
+  </div>
+
+  <%= f.label :cvc ,"CVC", class:'font-italic' %>
+  <div class='form-inline'>
+    <%= f.text_field :cvc, class:"form-control font-italic", placeholder:"3 dig.", maxlength:"4" %>
+  </div>
+
+  <%= f.label :expiration ,"Expiration", class: 'font-italic' %>
+  <div class='form-inline'>
+    <%= f.select :exp_month, 1..12, {include_blank: "---"}, class: "custom-select font-italic" %>/M
+    <%= f.select :exp_year, 20..25, {include_blank: "---"}, class: "custom-select font-italic" %>/Y
+  </div>
+
+  <%= f.submit "Register" , class:"btn btn-secondary mt-2" %>
+<% end %>

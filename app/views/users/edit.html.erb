@@ -1,6 +1,6 @@
 <%= form_with model: current_user, local: true do |f|%>
 
-  <br />
+  <br>
 
   <h1 class="font-weight-bolder font-italic">Edit Account</h1>
   <%= image_tag current_user.image, class: "rounded-circle",  width: "200", height: "200"%>
@@ -18,6 +18,19 @@
   <div class="form-inline">
     <%= f.email_field :email, class: 'form-control' %>
   </div>
+  <% @cards.each do |card| %>
+    <%= f.label :card_number, class: 'font-italic'%><br>
+    <div class="form-inline">
+      <input type="text" disabled class="form-control" placeholder="**** **** **** <%= card[:last4] %>">
+    </div>
+    <%= f.label :expiration, class: 'font-italic'%><br>
+    <div class="form-inline">
+      <input type="text" disabled class="form-control" placeholder=
+        "<%= card[:exp_month] %>
+        /
+        <%= card[:exp_year] %>">
+    </div>
+  <% end %>
   <%= f.label :location, class: 'font-italic' %>
   <div class="form-inline">
     <%= f.text_field :address, id: 'address', class: 'form-control' %>

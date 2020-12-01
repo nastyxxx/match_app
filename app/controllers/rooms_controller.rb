@@ -4,6 +4,7 @@ class RoomsController < ApplicationController
   end
 
   def new
+    redirect_to new_card_path and return unless current_user.card.present?
     @room = Room.new
   end
 

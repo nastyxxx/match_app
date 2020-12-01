@@ -20,8 +20,9 @@
  - has_many :messages, dependent: :destroy
  - has_one_attached :image
  - has_many :sns_credential, dependent: :destroy
+ - has_one :card, dependent: :destroy
 
- ## sns_credentials table
+## sns_credentials table
 
 | Column   | Type       | Options                        |
 | -------- | ---------- | ------------------------------ |
@@ -32,6 +33,18 @@
 ### Association
 
  - belongs_to :user, optional: true
+
+## cards table
+
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| card_token     | string     | null: false                    |
+| customer_token | string     | null: false                    |
+| user           | references | null: false, foreign_key: true |
+
+### Association
+
+ - belongs_to :user
 
 ## rooms table
 
