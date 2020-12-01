@@ -14,5 +14,5 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  resources :cards, only: [:new, :create, :destroy]
+  resources :cards, only: %i[new create destroy]
 end

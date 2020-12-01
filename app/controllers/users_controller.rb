@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_action :card_confirmation, only: [:edit, :show]
+  before_action :card_confirmation, only: %i[edit show]
 
   def index
     @users = User.where.not(id: current_user.id)
   end
 
   def edit
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     card = Card.find_by(user_id: current_user.id)
 
     customer = Payjp::Customer.retrieve(card.customer_token)

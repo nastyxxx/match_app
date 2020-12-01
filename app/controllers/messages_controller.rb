@@ -24,6 +24,7 @@ class MessagesController < ApplicationController
 
   def user_validation
     redirect_to new_card_path and return unless current_user.card.present?
+
     @room = Room.find(params[:room_id])
     room = @room.room_users.where(user_id: current_user.id)
     redirect_to root_path unless room.exists?
