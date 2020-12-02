@@ -7,7 +7,10 @@
 
   <div class="custom-form">
     <%= f.label :image, class: 'font-italic' %><br />
-    <%= f.file_field :image %>
+    <div id='user-image'></div>
+    <div class="col-7 text-truncate mt-1">
+      <%= f.file_field :image %>
+    </div>
   </div>
 
   <%= f.label :nickname, class: 'font-italic' %><br />
