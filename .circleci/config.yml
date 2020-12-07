@@ -1,8 +1,12 @@
 version: 2.1
+orbs:
+  ruby: circleci/ruby@0.1.2 
+
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.5-stretch-node
+        executor: ruby/default
         environment:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
@@ -61,7 +65,7 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-          
+
       - add_ssh_keys:
           fingerprints:
             - c3:83:cc:6c:93:7c:b9:e3:d5:be:a1:43:9c:79:d2:cb
