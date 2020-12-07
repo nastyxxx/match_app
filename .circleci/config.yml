@@ -1,14 +1,46 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2 
-
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5-stretch-node
-    executor: ruby/default
+      - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          - BUNDLER_VERSION: 2.1.4
+          - RAILS_ENV: 'test'
+      - image: circleci/mysql:5.7
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
+
+    working_directory: ~/repo
+
     steps:
       - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            gem install bundler -v 2.1.4
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run: mv config/database.yml.ci config/database.yml 
+
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
       - run:
           name: run tests
           command: |
@@ -29,7 +61,7 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-
+          
       - add_ssh_keys:
           fingerprints:
             - c3:83:cc:6c:93:7c:b9:e3:d5:be:a1:43:9c:79:d2:cb
