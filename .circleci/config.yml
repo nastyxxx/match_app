@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.5-stretch-node
         environment:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
@@ -15,7 +15,8 @@ jobs:
           - MYSQL_ROOT_HOST: '%'
 
     working_directory: ~/repo
-
+    
+    executor: ruby/default
     steps:
       - checkout
 
