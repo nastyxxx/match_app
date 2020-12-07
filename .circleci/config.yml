@@ -15,7 +15,7 @@ jobs:
           - MYSQL_ROOT_HOST: '%'
 
     working_directory: ~/repo
-    
+
     executor: ruby/default
     steps:
       - checkout
@@ -43,7 +43,7 @@ jobs:
 
       - run:
           name: Rubocop
-          command: bundle exec rubocop
+          command: bundle exec rubocop　--auto-correct
 
       - run:
           name: run tests
@@ -66,6 +66,6 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
-      # - add_ssh_keys:
-      #     fingerprints:
-      #       - c3:83:cc:6c:93:7c:b9:e3:d5:be:a1:43:9c:79:d2:cb
+      - add_ssh_keys:
+          fingerprints:
+            - c3:83:cc:6c:93:7c:b9:e3:d5:be:a1:43:9c:79:d2:cb
