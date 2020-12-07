@@ -1,0 +1,26 @@
+# Version 3はファイルの記述定義のうち安定して利用できる最新版とのことです
+version: "3.7"
+services:
+# "db"というコンテナを定義
+  db:
+    # MySQLのイメージを指定します
+    image: mysql:5.7
+    environment:
+      # PasswordとUsernameはdatabase.ymlと合わせます
+      MYSQL_DATABASE: root
+    ports:
+      - "4306:3306"
+      # ポートはどちらも"3306"でも大丈夫ですが、左側を"4306"と別の番号にすることでSequel ProでデータをDBを確認できるようになります。
+
+# "web"というコンテナを定義
+  web:
+    build: .
+    command: rails s -p 3000 -b '0.0.0.0'
+    # ローカルのディレクトリをマウント
+    volumes:
+      - .:/app_name
+    ports:
+      - "3000:3000"
+    # appコンテナとdbコンテナを連携
+    links:
+      - db
