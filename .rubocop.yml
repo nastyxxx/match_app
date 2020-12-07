@@ -1,5 +1,5 @@
 AllCops:
-  SuggestExtensions: false
+  # SuggestExtensions: false
 
   NewCops: enable
 
