@@ -53,7 +53,7 @@ jobs:
               circleci tests split --split-by=timings)"
 
 
-            bundle exec rspec \
+            bundle exec rspec-rails  \
               --format progress \
               --format RspecJunitFormatter \
               --out /tmp/test-results/rspec.xml \
