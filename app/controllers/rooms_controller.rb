@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
   def index
     @rooms = current_user.rooms.order(created_at: :desc)
