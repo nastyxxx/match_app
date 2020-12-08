@@ -11,15 +11,23 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
   context '投稿に失敗したとき' do
     it '送る値が空の為、メッセージの送信に失敗すること' do
       # サインインする
+      basic_pass root_path
       sign_in(@room_user.user)
+
+      # 作成されたチャットルームへ遷移する
+      click_on(@room_user.room.name)
+
+      # クレジットカードの情報入力
+      fill_in_card
 
       # 作成されたチャットルームへ遷移する
       click_on(@room_user.room.name)
 
       # DBに保存されていないことを確認する
       expect do
-        find('input[name="commit"]')
+        find('div[class="input-group-append"] input[name="commit"]')
       end.not_to change(Message, :count)
+
       # 元のページに戻ってくることを確認する
       expect(current_path).to eq room_messages_path(@room_user.room)
     end
@@ -28,27 +36,44 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
   context '投稿に成功したとき' do
     it 'テキストの投稿に成功すると、投稿一覧に遷移して、投稿した内容が表示されている' do
       # サインインする
+      basic_pass root_path
       sign_in(@room_user.user)
+
+      # 作成されたチャットルームへ遷移する
+      click_on(@room_user.room.name)
+
+      # クレジットカードの情報入力
+      fill_in_card
 
       # 作成されたチャットルームへ遷移する
       click_on(@room_user.room.name)
 
       # 値をテキストフォームに入力する
       post = 'aaaa'
-      fill_in 'message_content', with: post
+      fill_in 'message[content]', with: post
+
       # 送信した値がDBに保存されていることを確認する
       expect do
         find('div[class="input-group-append"] input[name="commit"]').click
       end.to change { Message.count }.by(1)
+
       # 投稿一覧画面に遷移していることを確認する
       expect(current_path).to eq room_messages_path(@room_user.room)
+
       # 送信した値がブラウザに表示されていることを確認する
       expect(page).to have_content(post)
     end
 
     it '画像の投稿に成功すると、投稿一覧に遷移して、投稿した画像が表示されている' do
       # サインインする
+      basic_pass root_path
       sign_in(@room_user.user)
+
+      # 作成されたチャットルームへ遷移する
+      click_on(@room_user.room.name)
+
+      # クレジットカードの情報入力
+      fill_in_card
 
       # 作成されたチャットルームへ遷移する
       click_on(@room_user.room.name)
@@ -73,7 +98,14 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
 
     it 'テキストと画像の投稿に成功すること' do
       # サインインする
+      basic_pass root_path
       sign_in(@room_user.user)
+
+      # 作成されたチャットルームへ遷移する
+      click_on(@room_user.room.name)
+
+      # クレジットカードの情報入力
+      fill_in_card
 
       # 作成されたチャットルームへ遷移する
       click_on(@room_user.room.name)
