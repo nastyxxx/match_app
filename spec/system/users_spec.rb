@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'ユーザーログイン機能', type: :system do
   it 'ログインしていない状態でトップページにアクセスした場合、サインインページに移動する' do
     # トップページに遷移する
-    visit root_path
+    basic_pass root_path
     # ログインしていない場合、サインインページに遷移していることを確認する
     expect(current_path).to eq new_user_session_path
   end
@@ -14,7 +14,7 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
     # 予め、ユーザーをDBに保存する
     @user = FactoryBot.create(:user)
     # サインインページへ移動する
-    visit new_user_session_path
+    basic_pass new_user_session_path
     # ログインしていない場合、サインインページに遷移していることを確認する
     expect(current_path).to eq new_user_session_path
     # すでに保存されているユーザーのemailとpasswordを入力する
@@ -30,7 +30,7 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
     # 予め、ユーザーをDBに保存する
     @user = FactoryBot.create(:user)
     # トップページに遷移する
-    visit new_user_session_path
+    basic_pass new_user_session_path
     # ログインしていない場合、サインインページに遷移していることを確認する
     expect(current_path).to eq new_user_session_path
     # 誤ったユーザー情報を入力する
