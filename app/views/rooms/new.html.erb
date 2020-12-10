@@ -20,6 +20,8 @@
       </div>
     <% end %>
     <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
+    <div class="text-center col-sm text-sm-left">
+      <%= f.submit "Create", class: "btn btn-success mt-2"%>
+    </div>
   </div>
-  <%= f.submit "Create", class: "btn btn-success mt-2"%>
 <% end %>
