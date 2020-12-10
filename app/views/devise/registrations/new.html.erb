@@ -62,10 +62,9 @@
   <%= f.label :location, class: 'font-italic mt-1' %>
   <div class="form-inline">
     <%= f.search_field :address, id: 'address', class: 'form-control mr-sm-2'%>
-    <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary my-2 my-sm-0'>
+    <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary my-sm-0'>
   </div>
-  <div id="display"><br /></div>
-  <div id='map' class="rounded"></div>
+  <div id='map' class="rounded my-2"></div>
   <%= f.submit "Sign up", class: 'btn btn-secondary my-2'%>
 <% end %>
 
@@ -76,7 +75,6 @@
 <script>
   let map
   let geocoder
-  const display = document.getElementById('display')
 
   // 入力前の地図
   function initMap(){
@@ -104,7 +102,6 @@
             map: map,
             position: results[0].geometry.location
         });
-        display.textContent = "Result：" + results[ 0 ].geometry.location
       } else {
         alert('No Result：' + status);
       }

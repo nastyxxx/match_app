@@ -37,16 +37,14 @@
     <%= f.search_field :address, id: 'address', class: 'form-control mr-sm-2' %>
     <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary my-2 my-sm-0'>
   </div>
-  <div id="display" class="mt-1"></div>
-  <div id='map' class="rounded"></div>
-  <%= f.submit "Update", class: 'btn btn-secondary mt-1'%>
+  <div id='map' class="rounded my-2"></div>
+  <%= f.submit "Update", class: 'btn btn-secondary'%>
 <% end %>
 <%= link_to  "Delete account?", user_path, method: :delete, class: 'btn btn-danger mt-1' %>
 
 <script>
   let map
   let geocoder
-  const display = document.getElementById('display')
 
   // 入力前の地図
   function initMap(){
@@ -74,7 +72,6 @@
             map: map,
             position: results[0].geometry.location
         });
-        display.textContent = "Result：" + results[ 0 ].geometry.location
       } else {
         alert('No Result：' + status);
       }

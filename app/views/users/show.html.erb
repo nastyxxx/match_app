@@ -19,14 +19,12 @@
     <%= @user.address%>
   </h5>
 </div>
-<div id="display"></div>
-<div id='map' class="rounded"></div>
-<%= link_to  "Back", :back, class: "btn btn-secondary mt-2" %>
+<div id='map' class="rounded my-2"></div>
+<%= link_to  "Back", :back, class: "btn btn-secondary" %>
 
 <script>
   let map
   let geocoder
-  const display = document.getElementById('display')
 
   // ユーザーのの地図
   function initMap(){
