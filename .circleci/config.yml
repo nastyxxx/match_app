@@ -45,10 +45,6 @@ jobs:
           name: Rubocop
           command: bundle exec rubocop
 
-      - image: selenium/standalone-chrome-debug
-          logging:
-            driver: none
-
       - run:
           name: run tests
           command: |
