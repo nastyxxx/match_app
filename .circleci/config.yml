@@ -45,13 +45,16 @@ jobs:
           name: Rubocop
           command: bundle exec rubocop
 
+      - image: selenium/standalone-chrome-debug
+          logging:
+          driver: none
+
       - run:
           name: run tests
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
-
 
             bundle exec rspec  \
               --format progress \
