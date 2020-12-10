@@ -1,22 +1,25 @@
 <%=form_with model: @room, local: true do |f|%>
-  
-  <br />
-
+  <br>
   <h1 class="font-weight-bolder font-italic">New Chat</h1>
-
-  <label class="font-italic" for="inputChatname">Chat Name</label>
+  <%= f.label :chat_name, "Chat Name", class: "font-italic", for: "inputChatname" %>
   <div class="form-inline">
     <%= f.text_field :name, placeholder: 'Chat Name', class: "form-control font-italic", id: "inputChatname"%>
   </div>
-  <label class="font-italic" for="inputchatMember">Chat Member</label>
-  <div class="form-inline">
-    <select name="room[user_ids][]" class="custom-select font-italic">
-      <option>Choose Member</option>
-      <% User.where.not(id: current_user.id).each do |user| %>
-        <option value=<%= user.id %>><%= user.nickname %></option>
-      <% end %>
-    </select>
+  <%= f.label :choose_member, "Choose Member", class: "font-italic", for: "inputchatMember" %>
+  <div class="row">
+    <% User.where.not(id: current_user.id).each do |user| %>
+      <div class="col-sm-4 col-lg-4 text-center my-2">
+        <%= image_tag user.image, class: "rounded-circle",  width: "150", height: "150" %>
+        <h2 class="font-italic">
+          <input type='radio' name="room[user_ids][]" value=<%= user.id %> />
+          <%= link_to user.nickname, user_path(user), class: "text-decoration-none text-secondary" %>
+        </h2>
+        <div class="d-block text-truncate font-italic">
+          <%= user.introduction %>
+        </div>
+      </div>
+    <% end %>
     <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
   </div>
-  <%= f.submit "Create", class: "btn btn-secondary mt-2"%>
+  <%= f.submit "Create", class: "btn btn-success mt-2"%>
 <% end %>

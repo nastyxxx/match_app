@@ -9,12 +9,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root 'rooms#index'
-  resources :users, only: %i[index show edit update destroy]
+  resources :users, only: %i[show edit update destroy]
   resources :rooms, only: %i[new create destroy] do
     resources :messages, only: %i[index create]
     collection do
       get 'search'
     end
   end
-  resources :cards, only: %i[new create destroy]
+  resources :cards, only: %i[new create]
 end

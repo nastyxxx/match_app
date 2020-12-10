@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   has_one_attached :image, dependent: :destroy
   has_many :room_users, dependent: :destroy
-  has_many :rooms, through: :room_users, dependent: :destroy
+  has_many :rooms, through: :room_users
   has_many :messages, dependent: :destroy
   has_many :sns_credential, dependent: :destroy
   has_one :card, dependent: :destroy

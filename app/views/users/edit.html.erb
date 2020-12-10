@@ -34,8 +34,8 @@
   <% end %>
   <%= f.label :location, class: 'font-italic' %>
   <div class="form-inline">
-    <%= f.text_field :address, id: 'address', class: 'form-control' %>
-    <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary'>
+    <%= f.search_field :address, id: 'address', class: 'form-control mr-sm-2' %>
+    <input type="button" value="Encode" onclick="codeAddress()" class='btn btn-secondary my-2 my-sm-0'>
   </div>
   <div id="display" class="mt-1"></div>
   <div id='map' class="rounded"></div>
@@ -81,3 +81,4 @@
     });   
   }
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
