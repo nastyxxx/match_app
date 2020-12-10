@@ -47,7 +47,7 @@ jobs:
 
       - image: selenium/standalone-chrome-debug
           logging:
-          driver: none
+            driver: none
 
       - run:
           name: run tests
