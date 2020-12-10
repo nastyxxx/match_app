@@ -10,8 +10,10 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
 
   context '投稿に失敗したとき' do
     it '送る値が空の為、メッセージの送信に失敗すること' do
+      # ユーザー認証
+      # basic_pass root_path
+      
       # サインインする
-      basic_pass root_path
       sign_in(@room_user.user)
 
       # 作成されたチャットルームへ遷移する
@@ -35,8 +37,10 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
 
   context '投稿に成功したとき' do
     it 'テキストの投稿に成功すると、投稿一覧に遷移して、投稿した内容が表示されている' do
+      # ユーザー認証
+      # basic_pass root_path
+      
       # サインインする
-      basic_pass root_path
       sign_in(@room_user.user)
 
       # 作成されたチャットルームへ遷移する
@@ -65,8 +69,10 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
     end
 
     it '画像の投稿に成功すると、投稿一覧に遷移して、投稿した画像が表示されている' do
+      # ユーザー認証
+      # basic_pass root_path
+      
       # サインインする
-      basic_pass root_path
       sign_in(@room_user.user)
 
       # 作成されたチャットルームへ遷移する
@@ -97,8 +103,10 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
     end
 
     it 'テキストと画像の投稿に成功すること' do
+      # ユーザー認証
+      # basic_pass root_path
+      
       # サインインする
-      basic_pass root_path
       sign_in(@room_user.user)
 
       # 作成されたチャットルームへ遷移する

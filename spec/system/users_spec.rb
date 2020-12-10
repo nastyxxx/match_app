@@ -13,8 +13,10 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
   it 'ログインに成功し、トップページに遷移する' do
     # 予め、ユーザーをDBに保存する
     @user = FactoryBot.create(:user)
+    # ユーザー認証
+    # basic_pass root_path
     # サインインページへ移動する
-    basic_pass new_user_session_path
+    visit new_user_session_path
     # ログインしていない場合、サインインページに遷移していることを確認する
     expect(current_path).to eq new_user_session_path
     # すでに保存されているユーザーのemailとpasswordを入力する
@@ -29,8 +31,10 @@ RSpec.describe 'ユーザーログイン機能', type: :system do
   it 'ログインに失敗し、再びサインインページに戻ってくる' do
     # 予め、ユーザーをDBに保存する
     @user = FactoryBot.create(:user)
+    # ユーザー認証
+    # basic_pass root_path
     # トップページに遷移する
-    basic_pass new_user_session_path
+    visit new_user_session_path
     # ログインしていない場合、サインインページに遷移していることを確認する
     expect(current_path).to eq new_user_session_path
     # 誤ったユーザー情報を入力する
