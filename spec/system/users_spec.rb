@@ -4,8 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'ユーザーログイン機能', type: :system do
   it 'ログインしていない状態でトップページにアクセスした場合、サインインページに移動する' do
+    # ユーザー認証
+    # basic_pass root_path
     # トップページに遷移する
-    basic_pass root_path
+    visit root_path
     # ログインしていない場合、サインインページに遷移していることを確認する
     expect(current_path).to eq new_user_session_path
   end
