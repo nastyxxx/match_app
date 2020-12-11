@@ -83,7 +83,7 @@ https://match-app-aws.work/
 
 # データベース概要
 
-![](/Users/naoto/Desktop/projects/match_app/.drawio.png)
+![](.drawio.png)
 
 ## users table
 
