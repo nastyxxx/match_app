@@ -64,7 +64,7 @@ https://match-app-aws.work/
 
 ### 開発環境
 - MySQL2
-- Docker,Dockr-compose
+- Docker,Docker-compose
 
 ### 本番環境
 - AWS (EC2,S3,RDS,Route53,ACM,ELB,VPC)
