@@ -2,7 +2,8 @@
 
 ## 概要
 
-「マッチングアプリ」  シンプルなUI/UX、マッチング相手との距離がわかる様なアプリケーションにしました。
+「マッチングアプリ」
+<br>シンプルなUI/UX、マッチング相手との距離がわかる様なアプリケーションにしました。
 
 ## 制作の背景
 
@@ -66,7 +67,7 @@ https://match-app-aws.work/
 - Docker,Dockr-compose
 
 ### 本番環境
-- AWS (EC2,S3,Route53,ACM,ELB,VPC)
+- AWS (EC2,S3,RDS,Route53,ACM,ELB,VPC)
 - unicorn
 - nginx
 - mariadb
