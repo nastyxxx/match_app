@@ -17,6 +17,8 @@ https://match-app-aws.work/
 Google、Facebookでログインするとパスワード入力不要。
 https://gyazo.com/53dc8f88d5ac0be7cb71f5f4a1d479e8
 
+[![Image from Gyazo](https://i.gyazo.com/a14a005840b7e1af32a5a53f23510516.png)](https://gyazo.com/a14a005840b7e1af32a5a53f23510516)
+
 - 位置情報の保存・共有（Google Map API）
 相手の詳細を見ると、位置情報が分かる。また、自身の位置情報の保存・更新が出来る。
 
