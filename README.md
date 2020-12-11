@@ -14,19 +14,24 @@ https://match-app-aws.work/
 ## 機能一覧
 
 - ログイン機能（devise、Google、Facebookでのログイン）
-Google、Facebookでログインするとパスワード入力不要。
-https://gyazo.com/53dc8f88d5ac0be7cb71f5f4a1d479e8
+-- Google、Facebookでログインするとパスワード入力不要。
 
 [![Image from Gyazo](https://i.gyazo.com/a14a005840b7e1af32a5a53f23510516.png)](https://gyazo.com/a14a005840b7e1af32a5a53f23510516)
 
 - 位置情報の保存・共有（Google Map API）
-相手の詳細を見ると、位置情報が分かる。また、自身の位置情報の保存・更新が出来る。
+-- 相手の詳細を見ると、位置情報が分かる。また、自身の位置情報の保存・更新が出来る。
+
+[![Image from Gyazo](https://i.gyazo.com/e0903d7acb8c7648d6004d42c0497dfd.png)](https://gyazo.com/e0903d7acb8c7648d6004d42c0497dfd)
 
 - 決済機能（Payjp）
 クレジットカードを登録しないと、チャット、個人情報編集が出来ない。
 
+[![Image from Gyazo](https://i.gyazo.com/749dab47e1515da358657eb59f884002.png)](https://gyazo.com/749dab47e1515da358657eb59f884002)
+
 - メッセージ投稿機能
 UIをLINE風に変更。
+
+[![Image from Gyazo](https://i.gyazo.com/6f0f2143471eba8f838127d9030c169c.png)](https://gyazo.com/6f0f2143471eba8f838127d9030c169c)
 
 ## 使用技術
 
@@ -64,7 +69,6 @@ UIをLINE風に変更。
 - geocooding
 - capistrano
 
-
 ## MatchApp作成を経ての気づき
 
 ### 工夫した点
@@ -76,10 +80,9 @@ UIをLINE風に変更。
 - テスト環境と本番環境でGoogle、Facebook認証の挙動が変わるため、ドメインの取得、SSL証明書の発行を行い、プロトコルをHTTPからHTTPSに変更した点。
 - UIを拡充するためBootstrapを導入した点
 - 要件定義でどの機能を実装するか選別した点。
-- インフラにDocker、Circle CI/CDを導入した点。
+- インフラにAWS、開発環境にDocker、Docker-compose、自動テスト・デプロイにCircle CI/CDを導入した点。
 
 以上。
-
 
 # データベース概要
 
