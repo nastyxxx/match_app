@@ -7,7 +7,7 @@
   </div>
   <%= f.label :choose_member, "Choose Member", class: "font-italic", for: "inputchatMember" %>
   <div class="row">
-    <% User.where.not(id: current_user.id).each do |user| %>
+    <% @users.each do |user| %>
       <div class="col-sm-4 col-lg-4 text-center my-2">
         <%= image_tag user.image, class: "rounded-circle",  width: "150", height: "150" %>
         <h2 class="font-italic">
