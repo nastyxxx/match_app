@@ -42,8 +42,8 @@ https://match-app-aws.work/
 
 [![Image from Gyazo](https://i.gyazo.com/749dab47e1515da358657eb59f884002.png)](https://gyazo.com/749dab47e1515da358657eb59f884002)
 
-- メッセージ投稿機能
-  * UIをLINE風に変更。
+- メッセージ即時更新機能
+  * ActionCableを用いてメッセージを即時更新。
 
 [![Image from Gyazo](https://i.gyazo.com/6f0f2143471eba8f838127d9030c169c.png)](https://gyazo.com/6f0f2143471eba8f838127d9030c169c)
 
@@ -82,6 +82,7 @@ https://match-app-aws.work/
 - Google Map API
 - geocooding
 - capistrano
+- ActionCable
 
 ## MatchApp作成を経ての気づき
 
@@ -100,90 +101,6 @@ https://match-app-aws.work/
 
 ![](.drawio.png)
 
-## users table
-
-| Column       | Type   | Options     |
-| ------------ | ------ | ----------- |
-| nickname     | string | null: false |
-| email        | string | null: false |
-| password     | string | null: false |
-| introduction | text   | null: false |
-| birth_day    | date   | null: false |
-| address      | string | null: false |
-| latitude     | float  |             |
-| longitude    | float  |             |
-
-### Association
-
- - has_many :room_users, dependent: :destroy
- - has_many :rooms, through: room_users
- - has_many :messages, dependent: :destroy
- - has_one_attached :image
- - has_many :sns_credential, dependent: :destroy
- - has_one  :card, dependent: :destroy
-
-## sns_credentials table
-
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| provider | string     | null: false                    |
-| uid      | string     | null: false                    |
-| user     | references | null: false, foreign_key: true |
-
-### Association
-
- - belongs_to :user, optional: true
-
-## cards table
-
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| card_token     | string     | null: false                    |
-| customer_token | string     | null: false                    |
-| user           | references | null: false, foreign_key: true |
-
-### Association
-
- - belongs_to :user
-
-## rooms table
-
-| Column   | Type     | Options       |
-| -------- | -------- | ------------- |
-| name     | string   | null: false   |
-
-### Association
-
- - has_many :room_users
- - has_many :users, through: room_users
- - has_many :messages, dependent: :destroy
-
-## room_users table
-
-| Column   | Type      | Options                        |
-| -------- | ----------| ------------------------------ |
-| user     | reference | null: false, foreign_key: true |
-| room     | reference | null: false, foreign_key: true |
-
-### Association
-
- - belongs_to :room, optional: true
- - belongs_to :user, optional: true
-
-## messages table
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     | null: false                    |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
-
-### Association
-
- - belongs_to :room
- - belongs_to :user
- - has_one_attached :image
- 
 # About me
  
  5年間アパレル会社で勤務しておりました。現在エンジニアを目指して就職活動中です。
