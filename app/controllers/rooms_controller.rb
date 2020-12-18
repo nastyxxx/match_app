@@ -9,7 +9,6 @@ class RoomsController < ApplicationController
     redirect_to new_card_path and return unless current_user.card.present?
 
     @room = Room.new
-    @users = User.where.not(id: current_user.id)
   end
 
   def create
