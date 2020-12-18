@@ -63,7 +63,7 @@ https://match-app-aws.work/
 - Github
 
 ### 開発環境
-- MySQL2
+- MySQL
 - Docker,Docker-compose
 
 ### 本番環境
