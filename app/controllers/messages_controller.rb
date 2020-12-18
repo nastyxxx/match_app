@@ -10,12 +10,8 @@ class MessagesController < ApplicationController
 
   def create
     @message = @room.messages.new(message_params)
-    if @message.save
-      ActionCable.server.broadcast 'message_channel', message: @message
-    else
-      @messages = @room.messages.includes(:user)
-      render :index
-    end
+    ActionCable.server.broadcast 'message_channel', message: @message if @message.save
+    redirect_to room_messages_path(@room) if @message.image.attached?
   end
 
   private

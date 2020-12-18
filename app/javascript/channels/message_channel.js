@@ -10,12 +10,15 @@ consumer.subscriptions.create("MessageChannel", {
   },
 
   received(data) {
+    const content = `${data.message.content}`
     const html = `<div class="mycomment">
-                  <p>${data.message.content}</p>
+                  <p>${content}</p>
                   </div>`;
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('message_content');
-    messages.insertAdjacentHTML('beforeend', html);
-    newMessage.value='';
+    if (content.length > 0) {
+      messages.insertAdjacentHTML('beforeend', html);
+      newMessage.value='';
+    }
   }
 });
