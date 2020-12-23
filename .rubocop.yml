@@ -11,6 +11,3 @@ AllCops:
     - 'actionmailbox/test/dummy/**/*'
     - 'actiontext/test/dummy/**/*'
     - '**/node_modules/**/*'
-
-  Style/BlockDelimiters:
-    AutoCorrect: false
