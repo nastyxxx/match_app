@@ -67,7 +67,7 @@ https://match-app-aws.work/
 - Docker,Docker-compose
 
 ### 本番環境
-- AWS (EC2,S3,RDS,Route53,ACM,ELB,VPC)
+- AWS (EC2,S3,RDS,Route53,ACM,ELB,VPC,CloudFront)
 - unicorn
 - nginx
 - mariadb
