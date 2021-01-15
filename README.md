@@ -80,7 +80,7 @@ https://match-app-aws.work/
 
 ### その他機能
 - Google Map API
-- geocooding
+- geocoder
 - capistrano
 - ActionCable
 
@@ -100,6 +100,10 @@ https://match-app-aws.work/
 # データベース概要
 
 ![](.drawio.png)
+
+# インフラ環境
+
+![](AWS.png)
 
 # About me
  
